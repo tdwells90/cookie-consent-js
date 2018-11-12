@@ -114,7 +114,7 @@ var cookieConsent = (function($) {
 			// Check if tracking cookie exists or not
 			if (!trackingCookie) {
 				// Init tracking cookie
-				setTrackingCookie("allow");
+				setTrackingCookie("disallow");
 			}
 
 			if (trackingCookie !== "true" || !trackingCookie) {
@@ -133,7 +133,7 @@ var cookieConsent = (function($) {
 			// Check if tracking cookie exists or not
 			if (!trackingCookie) {
 				// Init tracking cookie
-				setTrackingCookie("allow");
+				setTrackingCookie("disallow");
 			}
 
 			if (trackingCookie !== "true" || !trackingCookie) {
@@ -155,7 +155,7 @@ var cookieConsent = (function($) {
 			// Check if marketing cookie exists or not
 			if (!marketingCookie) {
 				// Init marketing cookie
-				setMarketingCookie("allow");
+				setMarketingCookie("disallow");
 			}
 
 			if (marketingCookie !== "true" || !marketingCookie) {
