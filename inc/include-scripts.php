@@ -15,7 +15,7 @@ if (!class_exists('cookie_consent_scripts')) {
     {
 
         // Register function
-        public static function register()
+        public function __construct()
         {
             /* register regular theme scripts */
             add_action('wp_enqueue_scripts', array(__class__, 'register_cookie_scripts'), 90);
@@ -53,6 +53,6 @@ if (!class_exists('cookie_consent_scripts')) {
         }
     }
 
-    cookie_consent_scripts::register();
+    new cookie_consent_scripts();
 
 }

@@ -13,21 +13,24 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 defined('ABSPATH') or die('Nope, not accessing this');
 
 // Main plugin class
-if (!class_exists('cookie_consent_js')) {
+if (!class_exists('cookie_consent_gtm')) {
 
-    class cookie_consent_js
+    class cookie_consent_gtm
     {
 
-        public static function register()
+        public function __construct()
         {
             //include scripts
             include(plugin_dir_path(__FILE__) . 'inc/include-scripts.php');
 
             //include plugin settings
             include(plugin_dir_path(__FILE__) . 'inc/include-settings.php');
+
+            //include GTM code snippet
+            include(plugin_dir_path(__FILE__) . 'inc/include-gtm.php');
         }
     }
 
-    cookie_consent_js::register();
+    new cookie_consent_gtm();
 
 }
