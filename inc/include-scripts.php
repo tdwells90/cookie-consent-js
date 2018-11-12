@@ -18,10 +18,10 @@ if (!class_exists('cookie_consent_scripts')) {
         public function __construct()
         {
             /* register regular theme scripts */
-            add_action('wp_enqueue_scripts', array(__class__, 'register_cookie_scripts'), 90);
+            add_action('wp_enqueue_scripts', array(__class__, 'register_cookie_scripts'), 50);
 
-            // Defer specific scripts
-            add_filter('script_loader_tag', array(__class__, 'defer_scripts'), 10, 3);
+            // Dynamic cookie consent script
+            add_action('wp_footer', array(__class__, 'cookie_consent_dynamic_script'), 60);
         }
 
         // Register the cookie consent scripts
@@ -31,25 +31,30 @@ if (!class_exists('cookie_consent_scripts')) {
             wp_register_script('cookie-consent-js', 'https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js', false, '', true);
             wp_enqueue_script('cookie-consent-js');
 
-            wp_register_script('cookie-consent-init', plugins_url('/js/cookie-consent-init.js', __FILE__), false, '', true);
+            wp_register_script('cookie-consent-init', plugins_url('/js/cookie-consent-init.js', dirname(__FILE__)), false, '', true);
             wp_enqueue_script('cookie-consent-init');
         }
 
-        public static function defer_scripts($tag, $handle, $src)
+
+        // Dynamic script for cookie consent
+        public static function cookie_consent_dynamic_script()
         {
+            $tracking = get_option('cookie-consent-gtm-tracking');
+            $marketing = get_option('cookie-consent-gtm-marketing');
 
-            // The handles of the enqueued scripts we want to defer
-            $defer_scripts = array(
-                'cookie-consent-js',
-                'cookie-consent-init'
-            );
+            // Get html to render
+            $html = '<script type="text/javascript">';
+            $html .= 'if(typeof cookieConsent !== "undefined"){';
+            $html .= 'cookieConsent.init({';
+            $html .= 'url: "/privacy",';
+            $html .= $tracking ? 'tracking: true,' : 'tracking: false,';
+            $html .= $marketing ? 'marketing: true,' : 'marketing: false,';
+            $html .= '});';
+            $html .= '}';
+            $html .= '</script>';
 
-            // If scripts are in array, get the source and output with defer tag
-            if (in_array($handle, $defer_scripts)) {
-                return '<script src="' . $src . '" defer="defer" type="text/javascript"></script>' . "\n";
-            }
-
-            return $tag;
+            // Return HTML for frontend
+            echo $html;
         }
     }
 
