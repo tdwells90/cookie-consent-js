@@ -18,7 +18,6 @@ if (!class_exists('cookie_consent_settings')) {
         {
             // Register plugin settings
             add_action('admin_init', function () {
-                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-essential');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-tracking');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-code');
@@ -55,9 +54,6 @@ if (!class_exists('cookie_consent_settings')) {
                     </tr>
                 </table>
                 <h3>Settings to display</h3>
-                <label>
-                    <input type="checkbox" name="cookie-consent-gtm-essential" <?php echo esc_attr(get_option('cookie-consent-gtm-essential')) == 'on' ? 'checked="checked"' : ''; ?> /> Essential Cookies
-                </label><br/>
                 <label>
                     <input type="checkbox" name="cookie-consent-gtm-tracking" <?php echo esc_attr(get_option('cookie-consent-gtm-tracking')) == 'on' ? 'checked="checked"' : ''; ?> /> Tracking Cookies
                 </label><br/>
