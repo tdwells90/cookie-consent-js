@@ -18,8 +18,14 @@ if (!class_exists('cookie_consent_settings')) {
         {
             // Register plugin settings
             add_action('admin_init', function () {
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-main-text');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-header');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-essential-heading');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-essential-text');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-tracking');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-tracking-text');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing-text');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-code');
             });
 

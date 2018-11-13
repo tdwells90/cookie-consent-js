@@ -116,7 +116,8 @@ var cookieConsent = (function($) {
 		// Init empty variables for plugin defaults
 		var marketing = "";
 		var tracking = "";
-		var cookieText = "";
+		var cookieText =
+			'<h2><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h2>';
 		var showSettings = "";
 		var advertisingText =
 			"We use cookies to ensure the best browsing experience and help us improve this website";
@@ -163,7 +164,7 @@ var cookieConsent = (function($) {
 		// Marketing
 		if (options.marketing) {
 			advertisingText =
-				"We use cookies to ensure you have the best browsing experience, to help us improve our website and for targeted advertising";
+				"We use cookies to ensure you have the best browsing experience, to help us improve our website and for targeted advertising.";
 
 			// Check if marketing cookie exists or not
 			if (!marketingCookie) {
@@ -209,7 +210,9 @@ var cookieConsent = (function($) {
 					messagelink:
 						'<div class="cookie-heading"><h2>Cookies</h2></div><div class="cookie-consent" id="cookieconsent:desc">' +
 						advertisingText +
-						'. By continuing to browse the site you are agreeing to our use of cookies.</div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><div class="form-group"><a tabindex="0" class="btn btn-wide btn-brand-2 settings-dismiss">Save settings</a></div></div><div class="settings-form"><h2>Strictly necessary cookies</h2><p>These cookies are essential so that you can move around the website and use its features. Without these cookies services you have asked for cannot be provided.</p>' +
+						'. By continuing to browse the site you are agreeing to our use of cookies. <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="' +
+						options.url +
+						'" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><div class="form-group"><a tabindex="0" class="btn btn-wide btn-brand-2 settings-dismiss">Save settings</a></div></div><div class="settings-form"><h2>Strictly necessary cookies</h2><p>These cookies are essential so that you can move around the website and use its features. Without these cookies services you have asked for cannot be provided.</p>' +
 						cookieText +
 						'<div class="settings-indiv">' +
 						tracking +
@@ -217,10 +220,7 @@ var cookieConsent = (function($) {
 						"</div></div></form></div>",
 					dismiss:
 						'<a aria-label="dismiss cookie message" tabindex="0" class="btn btn-primary cc-btn cc-dismiss">Accept</a>' +
-						showSettings +
-						'<a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="' +
-						options.url +
-						'" target="_blank">Find out more</a>',
+						showSettings,
 					allow: "",
 					deny: "",
 					link: "",
