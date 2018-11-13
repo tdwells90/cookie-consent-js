@@ -1,3 +1,7 @@
 node_modules/
+scss/
+cookie-plugin.js
+gulpfile.js
+package.json
 .DS_Store
 *.lock
