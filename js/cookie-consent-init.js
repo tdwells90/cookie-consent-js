@@ -1,8 +1,14 @@
 var cookieConsent = (function($) {
 	"use strict";
 
-	// Checkbox function
-
+	/**
+	 *
+	 *
+	 * Checkbox functions
+	 *
+	 *
+	 */
+	// Main checkbox function
 	var setCheckbox = function setCheckbox(state) {
 		if (state === "unchecked") {
 			$(".switch input").prop("checked", false);
@@ -35,6 +41,13 @@ var cookieConsent = (function($) {
 		}
 	};
 
+	/**
+	 *
+	 *
+	 * Set Cookie functions
+	 *
+	 *
+	 */
 	// Marketing Cookie set
 	var setMarketingCookie = function setMarketingCookie(state) {
 		// Get todays date + time
