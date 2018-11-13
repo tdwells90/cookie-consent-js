@@ -60,12 +60,41 @@ if (!class_exists('cookie_consent_settings')) {
                     </tr>
                 </table>
                 <h3>Settings to display</h3>
-                <label>
-                    <input type="checkbox" name="cookie-consent-gtm-tracking" <?php echo esc_attr(get_option('cookie-consent-gtm-tracking')) == 'on' ? 'checked="checked"' : ''; ?> /> Tracking Cookies
-                </label><br/>
-                <label>
-                    <input type="checkbox" name="cookie-consent-gtm-marketing" <?php echo esc_attr(get_option('cookie-consent-gtm-marketing')) == 'on' ? 'checked="checked"' : ''; ?> /> Marketing Cookies
-                </label>
+                <p><label><input type="checkbox" name="cookie-consent-gtm-tracking" <?php echo esc_attr(get_option('cookie-consent-gtm-tracking')) == 'on' ? 'checked="checked"' : ''; ?> /> Tracking Cookies</label><br/>
+                <label><input type="checkbox" name="cookie-consent-gtm-marketing" <?php echo esc_attr(get_option('cookie-consent-gtm-marketing')) == 'on' ? 'checked="checked"' : ''; ?> /> Marketing Cookies</label></p>
+
+                <hr />
+
+                <h3>Custom text</h3>
+                <p>Give the popup a personality and change the content for it here.</p>
+                <table class="form-table">
+                    <tbody>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-header">Header Text</label></th>
+                            <td><input class="regular-text ltr" type="text" id="cookie-consent-gtm-header" name="cookie-consent-gtm-header" value="<?php echo get_option('cookie-consent-gtm-header'); ?>" placeholder="Default: Cookies" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-main-text">Main Text</label></th>
+                            <td><textarea class="regular-text ltr" type='textarea' id="cookie-consent-gtm-main-text" name="cookie-consent-gtm-main-text" placeholder="Default: We use cookies to ensure you have the best browsing experience, to help us improve our website and for targeted advertising. By continuing to browse the site you are agreeing to our use of cookies."><?php echo get_option('cookie-consent-gtm-main-text'); ?></textarea></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-essential-heading">Essential Cookies Header Text</label></th>
+                            <td><input class="regular-text ltr" type="text" id="cookie-consent-gtm-essential-heading" name="cookie-consent-gtm-essential-heading" value="<?php echo get_option('cookie-consent-gtm-essential-heading'); ?>" placeholder="Default: Strictly necessary cookies" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-essential-text">Essential Cookies Text</label></th>
+                            <td><textarea class="regular-text ltr" type='textarea' id="cookie-consent-gtm-essential-text" name="cookie-consent-gtm-essential-text" placeholder="Default: These cookies are essential so that you can move around the website and use its features. Without these cookies services you have asked for cannot be provided."><?php echo get_option('cookie-consent-gtm-essential-text'); ?></textarea></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-tracking-text">Tracking Cookies text</label></th>
+                            <td><input class="regular-text ltr" type="text" id="cookie-consent-gtm-tracking-text" name="cookie-consent-gtm-tracking-text" value="<?php echo get_option('cookie-consent-gtm-tracking-text'); ?>" placeholder="Default: Tracking cookies help us track use of our website and make improvements." /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-marketing-text">Marketing Cookies text</label></th>
+                            <td><input class="regular-text ltr" type="text" id="cookie-consent-gtm-marketing-text" name="cookie-consent-gtm-marketing-text" value="<?php echo get_option('cookie-consent-gtm-marketing-text'); ?>" placeholder="Default: Marketing cookies are used to provide you with personalised marketing after you have visited our website." /></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <?php submit_button(); ?>
             </form>
         </div>
