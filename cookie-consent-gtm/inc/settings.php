@@ -18,6 +18,7 @@ if (!class_exists('cookie_consent_settings')) {
         {
             // Register plugin settings
             add_action('admin_init', function () {
+                // Custom Text
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-main-text');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-header');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-essential-heading');
@@ -27,8 +28,13 @@ if (!class_exists('cookie_consent_settings')) {
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing-text');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-code');
+
+                // Custom Colours
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-link-color');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-bg-color');
+
+                // Privacy Link
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-privacy-link');
             });
 
             // Register options page
@@ -91,6 +97,10 @@ if (!class_exists('cookie_consent_settings')) {
                 <p>Give the popup a personality and change the content for it here.</p>
                 <table class="form-table">
                     <tbody>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-privacy-link">Privacy link</label></th>
+                            <td><input class="regular-text ltr" type="text" name="cookie-consent-gtm-privacy-link" value="<?php echo get_option('cookie-consent-gtm-privacy-link'); ?>" placeholder="Default: /privacy/" /></td>
+                        </tr>
                         <tr>
                             <th scope="row"><label for="cookie-consent-gtm-header">Header Text</label></th>
                             <td><input class="regular-text ltr" type="text" id="cookie-consent-gtm-header" name="cookie-consent-gtm-header" value="<?php echo get_option('cookie-consent-gtm-header'); ?>" placeholder="Default: Cookies" /></td>

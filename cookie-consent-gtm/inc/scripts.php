@@ -65,11 +65,14 @@ if (!class_exists('cookie_consent_scripts')) {
             $tracking_text = get_option('cookie-consent-gtm-tracking-text');
             $marketing_text = get_option('cookie-consent-gtm-marketing-text');
 
+            // Privacy link
+            $privacy = get_option('cookie-consent-gtm-privacy-link');
+
             // Get html to render
             $html = '<script type="text/javascript">';
             $html .= 'if(typeof cookieConsent !== "undefined"){';
             $html .= 'cookieConsent.init({';
-            $html .= 'url: "/privacy",';
+            $html .= $privacy ? 'url: "' . $privacy . '",' : 'url: "/privacy/",';
             $html .= $tracking ? 'tracking: true,' : 'tracking: false,';
             $html .= $marketing ? 'marketing: true,' : 'marketing: false,';
             $html .= $main_text ? 'mainText: "' . $main_text . '",' : 'mainText: false,';

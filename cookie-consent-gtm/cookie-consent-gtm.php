@@ -21,16 +21,16 @@ if (!class_exists('cookie_consent_gtm')) {
         public function __construct()
         {
             //include scripts
-            include(plugin_dir_path(__FILE__) . 'inc/include-scripts.php');
+            include(plugin_dir_path(__FILE__) . 'inc/scripts.php');
 
             //include styles
-            include(plugin_dir_path(__FILE__) . 'inc/include-styles.php');
+            include(plugin_dir_path(__FILE__) . 'inc/styles.php');
 
             //include plugin settings
-            include(plugin_dir_path(__FILE__) . 'inc/include-settings.php');
+            include(plugin_dir_path(__FILE__) . 'inc/settings.php');
 
             //include GTM code snippet
-            include(plugin_dir_path(__FILE__) . 'inc/include-gtm.php');
+            include(plugin_dir_path(__FILE__) . 'inc/gtm.php');
 
             // Add HTML to footer for the cookie consent popup
             add_action('wp_footer', array(__class__, 'cookie_add_html'));

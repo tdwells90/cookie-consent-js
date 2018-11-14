@@ -1,12 +1,4 @@
 .cc-bottom {
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	width: 100%;
-	z-index: 999999999;
-	overflow: hidden;
-	padding: 2rem 2.4rem;
-
 	.cookie-heading,
 	.cc-compliance {
 		min-width: 160px;
@@ -52,9 +44,23 @@
 	}
 }
 
+.cc-revoke {
+	position: fixed;
+	bottom: 0px;
+	padding: 8px 1rem;
+	z-index: 9999;
+	cursor: pointer;
+}
+
 .cc-window {
-	background-color: #fff;
 	transition: 0.2s ease all;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999999999;
+	overflow: hidden;
+	padding: 2rem 2.4rem;
 
 	&.cc-banner {
 		display: flex;
@@ -78,6 +84,10 @@
 	h5,
 	h6 {
 		margin-top: 0;
+	}
+
+	.settings-dismiss {
+		cursor: pointer;
 	}
 
 	.cc-dismiss::after {
@@ -134,8 +144,6 @@
 		}
 	}
 	input:checked + .slider {
-		background-color: #c2a476;
-
 		&::before {
 			transform: translateX(30px);
 		}
