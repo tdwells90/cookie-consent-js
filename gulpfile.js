@@ -43,7 +43,7 @@ gulp.task("sass", function() {
 			})
 		)
 		.pipe(concat("cookie-consent-init.css"))
-		.pipe(gulp.dest("./css/"));
+		.pipe(gulp.dest("./cookie-consent-gtm/css/"));
 });
 
 // JS
@@ -67,7 +67,7 @@ gulp.task("compress", function() {
 		)
 		.pipe(concat("cookie-consent-init.js"))
 		.pipe(uglify())
-		.pipe(gulp.dest("./js/"));
+		.pipe(gulp.dest("./cookie-consent-gtm/js/"));
 });
 
 // Watch Files For Changes
