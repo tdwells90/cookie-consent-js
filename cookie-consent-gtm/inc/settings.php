@@ -77,7 +77,7 @@ if (!class_exists('cookie_consent_settings')) {
 
                 <hr />
 
-                <h3>Colours</h3>
+                <h3>Colours & HTML</h3>
                 <p>Choose a background and link colour.</p>
 
                 <table class="form-table">
