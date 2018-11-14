@@ -181,7 +181,7 @@ var cookieConsent = (function($) {
 					message: `<div class="cookie-heading"><h2>${header}</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText}</div>`,
 					messagelink: `<div class="cookie-heading"><h2>${header}</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="${
 						options.url
-					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><div class="form-group"><a tabindex="0" class="settings-dismiss">Save settings</a></div></div><div class="settings-form"><h3>${essentialHeader}</h3><p>${essentialText}</p>${cookieText}<div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
+					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><a tabindex="0" class="settings-dismiss">Save settings</a></div><div class="settings-form"><h3>${essentialHeader}</h3><p>${essentialText}</p>${cookieText}<div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
 					dismiss: `<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss">Accept</a>${showSettings}`,
 					allow: "",
 					deny: "",
