@@ -20,6 +20,9 @@ if (!class_exists('cookie_consent_scripts')) {
             /* register regular theme scripts */
             add_action('wp_enqueue_scripts', array(__class__, 'register_cookie_scripts'), 50);
 
+            // Register admin scripts (color picker)
+            add_action('admin_enqueue_scripts', array(__class__, 'register_admin_scripts'));
+
             // Dynamic cookie consent script
             add_action('wp_footer', array(__class__, 'cookie_consent_dynamic_script'), 60);
         }
@@ -33,6 +36,17 @@ if (!class_exists('cookie_consent_scripts')) {
 
             wp_register_script('cookie-consent-init', plugins_url('/js/cookie-consent-init.js', dirname(__FILE__)), false, '', true);
             wp_enqueue_script('cookie-consent-init');
+        }
+
+        // Register admin scripts
+        public static function register_admin_scripts()
+        {
+            if (is_admin()) {
+                // Add the color picker css file
+                wp_enqueue_style('wp-color-picker');
+                // Include our custom jQuery file with WordPress Color Picker dependency
+                wp_enqueue_script('custom-script-handle', plugins_url('/admin-js/color-picker.js', dirname(__FILE__)), array('wp-color-picker'), false, true);
+            }
         }
 
 

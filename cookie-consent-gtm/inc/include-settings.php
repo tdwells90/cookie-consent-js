@@ -27,10 +27,14 @@ if (!class_exists('cookie_consent_settings')) {
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing-text');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-code');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-link-color');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-bg-color');
             });
 
             // Register options page
             add_action('admin_menu', array(__class__, 'register_options_page'));
+
+            add_action('admin_menu', array(__class__, 'check_user_roles'));
         }
 
         // Register settings page
@@ -62,6 +66,24 @@ if (!class_exists('cookie_consent_settings')) {
                 <h3>Settings to display</h3>
                 <p><label><input type="checkbox" name="cookie-consent-gtm-tracking" <?php echo esc_attr(get_option('cookie-consent-gtm-tracking')) == 'on' ? 'checked="checked"' : ''; ?> /> Tracking Cookies</label><br/>
                 <label><input type="checkbox" name="cookie-consent-gtm-marketing" <?php echo esc_attr(get_option('cookie-consent-gtm-marketing')) == 'on' ? 'checked="checked"' : ''; ?> /> Marketing Cookies</label></p>
+
+                <hr />
+
+                <h3>Colours</h3>
+                <p>Choose a background and link colour.</p>
+
+                <table class="form-table">
+                    <tbody>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-link-color">Link Colour</label></th>
+                            <td><input type="text" name="cookie-consent-gtm-link-color" value="<?php echo get_option('cookie-consent-gtm-link-color'); ?>" class="color-picker-field" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-bg-color">Background Colour</label></th>
+                            <td><input type="text" name="cookie-consent-gtm-bg-color" value="<?php echo get_option('cookie-consent-gtm-bg-color'); ?>" class="color-picker-field" /></td>
+                        </tr>
+                    </tbody>
+                </table>
 
                 <hr />
 
@@ -100,6 +122,13 @@ if (!class_exists('cookie_consent_settings')) {
         </div>
             <?php
 
+        }
+
+        public static function check_user_roles()
+        {
+            if (!current_user_can('manage_options')) {
+                wp_die(__('You do not have sufficient permissions to access this page.'));
+            }
         }
 
     }
