@@ -113,87 +113,63 @@ var cookieConsent = (function($) {
 			"$1"
 		);
 
-		// Init empty variables for plugin defaults
-		var marketing = "";
-		var tracking = "";
-		var cookieText =
-			'<h2><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h2>';
-		var showSettings = "";
-
 		// Options from init
+		// Tracking text
 		var trackingText = options.trackingText
 			? options.trackingText
 			: "Tracking cookies help us track use of our website and make improvements.";
+
+		// Marketing text
 		var marketingText = options.marketingText
 			? options.marketingText
 			: "Marketing cookies are used to provide you with personalised marketing after you have visited our website.";
+
+		// Main Header
 		var header = options.header ? options.header : "Cookies";
+
+		// Essential Cookies header
 		var essentialHeader = options.essentialHeader
 			? options.essentialHeader
 			: "Strictly necessary cookies";
+
+		// Essential Cookies text
 		var essentialText = options.essentialText
 			? options.essentialText
 			: "These cookies are essential so that you can move around the website and use its features. Without these cookies services you have asked for cannot be provided.";
+
+		// Main text on front of popup
 		var mainText = options.mainText
 			? options.mainText
 			: "We use cookies to ensure you have the best browsing experience, to help us improve our website and for targeted advertising.. By continuing to browse the site you are agreeing to our use of cookies.";
 
-		// check options
-		// If there's both ticked
-		if (options.tracking && options.marketing) {
-			// Check if tracking cookie exists or not
-			if (!trackingCookie) {
-				// Init tracking cookie
-				setTrackingCookie("disallow");
-			}
+		// Third party cookies checkbox
+		var cookieText =
+			trackingCookie === "true" || marketingCookie === "true"
+				? '<h3><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h3>'
+				: '<h3><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h3>';
 
-			if (trackingCookie !== "true" || !trackingCookie) {
-				// Tracking code for popup
-				tracking =
-					trackingCookie !== "true" || !trackingCookie
-						? `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking" checked>${trackingText}</label></div>`
-						: `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking">${trackingText}</label></div>`;
-			}
+		// Whether settings need to be displayed
+		var showSettings =
+			options.tracking || options.marketing
+				? '<a href="#" class="cc-settings">Settings</a>'
+				: "";
+
+		// Tracking cookie checkbox
+		var tracking = "";
+		if (options.tracking) {
+			tracking =
+				trackingCookie !== "true" || !trackingCookie
+					? `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking" checked>${trackingText}</label></div>`
+					: `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking">${trackingText}</label></div>`;
 		}
 
-		// If just tracking
-		if (options.tracking && !options.marketing) {
-			// Check if tracking cookie exists or not
-			if (!trackingCookie) {
-				// Init tracking cookie
-				setTrackingCookie("disallow");
-			}
-
-			if (trackingCookie !== "true" || !trackingCookie) {
-				// Tracking code for popup
-				tracking =
-					trackingCookie !== "true" || !trackingCookie
-						? `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking" checked>${trackingText}</label></div>`
-						: `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking">${trackingText}</label></div>`;
-			}
-		}
-
-		// Marketing
+		// Marketing cookie checkbox
+		var marketing = "";
 		if (options.marketing) {
-			// Check if marketing cookie exists or not
-			if (!marketingCookie) {
-				// Init marketing cookie
-				setMarketingCookie("disallow");
-			}
-
 			marketing =
 				marketingCookie !== "true" || !marketingCookie
 					? `<div class="checkbox"><label><input type="checkbox" class="marketing-checkbox" value="marketing" checked>${marketingText}</label></div>`
 					: `<div class="checkbox"><label><input type="checkbox" class="marketing-checkbox" value="marketing">${marketingText}</label></div>`;
-		}
-
-		// If options exist, show the toggler
-		if (options.marketing || options.tracking) {
-			cookieText =
-				trackingCookie === "true" || marketingCookie === "true"
-					? '<h2><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h2>'
-					: '<h2><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h2>';
-			showSettings = '<a href="#" class="cc-settings">Settings</a>';
 		}
 
 		// Init cookie consent
@@ -202,10 +178,10 @@ var cookieConsent = (function($) {
 				container: $("#cookie-consent"),
 				elements: {
 					header: "",
-					message: `<div class="cookie-heading"><h2>Cookies</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText}</div>`,
-					messagelink: `<div class="cookie-heading"><h2>Cookies</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="${
+					message: `<div class="cookie-heading"><h2>${header}</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText}</div>`,
+					messagelink: `<div class="cookie-heading"><h2>${header}</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="${
 						options.url
-					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><div class="form-group"><a tabindex="0" class="settings-dismiss">Save settings</a></div></div><div class="settings-form"><h2>${essentialHeader}</h2><p>${essentialText}</p>${cookieText}<div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
+					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><div class="form-group"><a tabindex="0" class="settings-dismiss">Save settings</a></div></div><div class="settings-form"><h3>${essentialHeader}</h3><p>${essentialText}</p>${cookieText}<div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
 					dismiss: `<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss">Accept</a>${showSettings}`,
 					allow: "",
 					deny: "",
