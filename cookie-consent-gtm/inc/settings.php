@@ -27,6 +27,8 @@ if (!class_exists('cookie_consent_settings')) {
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-tracking-text');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-marketing-text');
+
+                // GTM Code
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-code');
 
                 // Custom Colours
