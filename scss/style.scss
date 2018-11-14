@@ -1,0 +1,149 @@
+.cc-bottom {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999999999;
+	overflow: hidden;
+	padding: 2rem 2.4rem;
+
+	.cookie-heading,
+	.cc-compliance {
+		min-width: 160px;
+	}
+
+	.cookie-heading {
+		text-align: right;
+
+		h2 {
+			line-height: 1;
+			margin: 0;
+		}
+	}
+
+	.cookie-consent {
+		padding: 0 2rem;
+		line-height: 1.4;
+
+		.cc-link {
+			text-decoration: underline;
+			margin-left: 4px;
+		}
+	}
+
+	.cc-compliance {
+		text-align: left;
+
+		.cc-dismiss {
+			font-size: 1.2rem;
+			text-decoration: underline;
+			cursor: pointer;
+			line-height: 1;
+		}
+
+		a {
+			display: block;
+			margin-bottom: 12px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+
+.cc-window {
+	background-color: #fff;
+	transition: 0.2s ease all;
+
+	&.cc-banner {
+		display: flex;
+		width: 100%;
+		z-index: 999999999;
+	}
+
+	&.cc-invisible {
+		opacity: 0;
+	}
+}
+
+// Cookie Settings
+.cookie-settings {
+	display: none;
+
+	h2 {
+		margin-top: 0;
+	}
+
+	.cc-dismiss::after {
+		display: none;
+	}
+
+	.settings-heading {
+		float: left;
+		width: calc(100% / 12 * 2);
+		text-align: right;
+	}
+
+	.settings-form {
+		padding-left: 2rem;
+		float: left;
+		width: calc(100% / 12 * 10);
+	}
+
+	// Switch
+	.switch {
+		position: relative;
+		display: inline-block;
+		width: 60px;
+		height: 30px;
+		margin-right: 12px;
+		max-height: none;
+		margin-bottom: -2px;
+
+		input {
+			display: none;
+		}
+	}
+	.slider {
+		position: absolute;
+		cursor: pointer;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: #ccc;
+		transition: 0.4s;
+		border-radius: 34px;
+
+		&::before {
+			position: absolute;
+			content: "";
+			border-radius: 50%;
+			height: 22px;
+			width: 22px;
+			left: 4px;
+			bottom: 4px;
+			background-color: #fff;
+			transition: 0.4s;
+		}
+	}
+	input:checked + .slider {
+		background-color: #c2a476;
+
+		&::before {
+			transform: translateX(30px);
+		}
+	}
+
+	.settings-indiv {
+		padding-left: 64px;
+	}
+
+	.tracking-checkbox,
+	.marketing-checkbox {
+		position: absolute;
+		border: 0;
+		margin: 4px 5px 6px -24px;
+	}
+}

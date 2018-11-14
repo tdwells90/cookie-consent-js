@@ -1,0 +1,40 @@
+{
+	"name": "cookie-consent-gtm",
+	"version": "0.1.0",
+	"description": "Plugin for WordPress using Google Tag Manager as a platform to deliver cookies.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/tdwells90/cookie-consent-js.git"
+	},
+	"keywords": [
+		"gdpr",
+		"wordpress"
+	],
+	"author": "Tom Wells",
+	"license": "GPL-2.0",
+	"bugs": {
+		"url": "https://github.com/tdwells90/cookie-consent-js/issues"
+	},
+	"homepage": "https://github.com/tdwells90/cookie-consent-js#readme",
+	"devDependencies": {
+		"babel-core": "^6.26.3",
+		"babel-preset-env": "^1.7.0",
+		"browser-sync": "^2.24.6",
+		"fs": "^0.0.1-security",
+		"fs-path": "^0.0.24",
+		"gulp": "^3.9.1",
+		"gulp-autoprefixer": "^5.0.0",
+		"gulp-babel": "^7.0.1",
+		"gulp-clean-css": "^3.9.4",
+		"gulp-concat": "^2.6.1",
+		"gulp-css-purge": "^3.0.8",
+		"gulp-header": "^2.0.5",
+		"gulp-sass": "^4.0.1",
+		"gulp-sourcemaps": "^2.6.4",
+		"gulp-uglify": "^3.0.1"
+	}
+}

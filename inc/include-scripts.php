@@ -39,8 +39,17 @@ if (!class_exists('cookie_consent_scripts')) {
         // Dynamic script for cookie consent
         public static function cookie_consent_dynamic_script()
         {
+            // Tracking / Marketing cookies enable
             $tracking = get_option('cookie-consent-gtm-tracking');
             $marketing = get_option('cookie-consent-gtm-marketing');
+
+            // Custom text
+            $main_text = get_option('cookie-consent-gtm-main-text');
+            $header = get_option('cookie-consent-gtm-header');
+            $essential_header = get_option('cookie-consent-gtm-essential-heading');
+            $essential_text = get_option('cookie-consent-gtm-essential-text');
+            $tracking_text = get_option('cookie-consent-gtm-tracking-text');
+            $marketing_text = get_option('cookie-consent-gtm-marketing-text');
 
             // Get html to render
             $html = '<script type="text/javascript">';
@@ -49,6 +58,11 @@ if (!class_exists('cookie_consent_scripts')) {
             $html .= 'url: "/privacy",';
             $html .= $tracking ? 'tracking: true,' : 'tracking: false,';
             $html .= $marketing ? 'marketing: true,' : 'marketing: false,';
+            $html .= $main_text ? 'mainText: "' . $main_text . '",' : 'mainText: false,';
+            $html .= $header ? 'header: "' . $header . '",' : 'header: false,';
+            $html .= $essential_header ? 'essentialHeader: "' . $essential_header . '",' : 'essentialHeader: false,';
+            $html .= $tracking_text ? 'trackingText: "' . $tracking_text . '",' : 'trackingText: false,';
+            $html .= $marketing_text ? 'marketingText: "' . $marketing_text . '",' : 'marketingText: false,';
             $html .= '});';
             $html .= '}';
             $html .= '</script>';

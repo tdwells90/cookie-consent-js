@@ -34,12 +34,27 @@ if (!class_exists('cookie_consent_gtm')) {
 
             // Add HTML to footer for the cookie consent popup
             add_action('wp_footer', array(__class__, 'cookie_add_html'));
+
+            // Setup initial cookies
+            add_action('init', array(__class__, 'init_cookies'));
         }
 
+        // HTML for the cookie consent
         public static function cookie_add_html()
         {
             $html = '<div id="cookie-consent"></div>';
             echo $html;
+        }
+
+        // Set up initial cookies
+        public static function init_cookies()
+        {
+            if (!isset($_COOKIE['disallow_tracking'])) {
+                setcookie('disallow_tracking', 'true', time() + 31556926);
+            }
+            if (!isset($_COOKIE['disallow_marketing'])) {
+                setcookie('disallow_marketing', 'true', time() + 31556926);
+            }
         }
 
     }

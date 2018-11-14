@@ -22,17 +22,17 @@ if (!class_exists('cookie_consent_styles')) {
 
         public static function cookie_consent_gtm_styles()
         {
-            wp_enqueue_style(
-                'cookie-consent-style',
-                'https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css',
-                '',
-                '',
-                'all'
-            );
+            // wp_enqueue_style(
+            //     'cookie-consent-style',
+            //     'https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css',
+            //     '',
+            //     '',
+            //     'all'
+            // );
 
             wp_enqueue_style(
                 'cookie-consent-plugin-style',
-                plugins_url('/css/cookie-consent-gtm.css', dirname(__FILE__)),
+                plugins_url('/css/cookie-consent-init.css', dirname(__FILE__)),
                 '',
                 '',
                 'all'
