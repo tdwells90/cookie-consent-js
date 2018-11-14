@@ -119,8 +119,24 @@ var cookieConsent = (function($) {
 		var cookieText =
 			'<h2><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h2>';
 		var showSettings = "";
-		var advertisingText =
-			"We use cookies to ensure the best browsing experience and help us improve this website";
+
+		// Options from init
+		var trackingText = options.trackingText
+			? options.trackingText
+			: "Tracking cookies help us track use of our website and make improvements.";
+		var marketingText = options.marketingText
+			? options.marketingText
+			: "Marketing cookies are used to provide you with personalised marketing after you have visited our website.";
+		var header = options.header ? options.header : "Cookies";
+		var essentialHeader = options.essentialHeader
+			? options.essentialHeader
+			: "Strictly necessary cookies";
+		var essentialText = options.essentialText
+			? options.essentialText
+			: "These cookies are essential so that you can move around the website and use its features. Without these cookies services you have asked for cannot be provided.";
+		var mainText = options.mainText
+			? options.mainText
+			: "We use cookies to ensure you have the best browsing experience, to help us improve our website and for targeted advertising.. By continuing to browse the site you are agreeing to our use of cookies.";
 
 		// check options
 		// If there's both ticked
@@ -134,11 +150,9 @@ var cookieConsent = (function($) {
 			if (trackingCookie !== "true" || !trackingCookie) {
 				// Tracking code for popup
 				tracking =
-					'<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking" checked>Tracking cookies help us track use of our website and make improvements.</label></div>';
-			} else {
-				// tracking code for popup
-				tracking =
-					'<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking">Tracking cookies help us track use of our website and make improvements.</label></div>';
+					trackingCookie !== "true" || !trackingCookie
+						? `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking" checked>${trackingText}</label></div>`
+						: `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking">${trackingText}</label></div>`;
 			}
 		}
 
@@ -153,47 +167,32 @@ var cookieConsent = (function($) {
 			if (trackingCookie !== "true" || !trackingCookie) {
 				// Tracking code for popup
 				tracking =
-					'<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking" checked>Tracking cookies help us track use of our website and make improvements.</label></div>';
-			} else {
-				// tracking code for popup
-				tracking =
-					'<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking">Tracking cookies help us track use of our website and make improvements.</label></div>';
+					trackingCookie !== "true" || !trackingCookie
+						? `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking" checked>${trackingText}</label></div>`
+						: `<div class="checkbox"><label><input type="checkbox" class="tracking-checkbox" value="tracking">${trackingText}</label></div>`;
 			}
 		}
 
 		// Marketing
 		if (options.marketing) {
-			advertisingText =
-				"We use cookies to ensure you have the best browsing experience, to help us improve our website and for targeted advertising.";
-
 			// Check if marketing cookie exists or not
 			if (!marketingCookie) {
 				// Init marketing cookie
 				setMarketingCookie("disallow");
 			}
 
-			if (marketingCookie !== "true" || !marketingCookie) {
-				// Marketing message for popup
-				marketing =
-					'<div class="checkbox"><label><input type="checkbox" class="marketing-checkbox" value="marketing" checked>Marketing cookies are used to provide you with personalised marketing after you have visited our website.</label></div>';
-			} else {
-				// Marketing message for popup
-				marketing =
-					'<div class="checkbox"><label><input type="checkbox" class="marketing-checkbox" value="marketing">Marketing cookies are used to provide you with personalised marketing after you have visited our website.</label></div>';
-			}
+			marketing =
+				marketingCookie !== "true" || !marketingCookie
+					? `<div class="checkbox"><label><input type="checkbox" class="marketing-checkbox" value="marketing" checked>${marketingText}</label></div>`
+					: `<div class="checkbox"><label><input type="checkbox" class="marketing-checkbox" value="marketing">${marketingText}</label></div>`;
 		}
 
 		// If options exist, show the toggler
 		if (options.marketing || options.tracking) {
-			// If cookies are set to true (disallowed), uncheck the toggle
-			if (trackingCookie === "true" || marketingCookie === "true") {
-				cookieText =
-					'<h2><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h2>';
-				// Otherwise, set toggle checked
-			} else {
-				cookieText =
-					'<h2><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h2>';
-			}
+			cookieText =
+				trackingCookie === "true" || marketingCookie === "true"
+					? '<h2><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h2>'
+					: '<h2><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h2>';
 			showSettings = '<a href="#" class="cc-settings">Settings</a>';
 		}
 
@@ -203,24 +202,11 @@ var cookieConsent = (function($) {
 				container: $("#cookie-consent"),
 				elements: {
 					header: "",
-					message:
-						'<div class="cookie-heading"><h2>Cookies</h2></div><div class="cookie-consent" id="cookieconsent:desc">' +
-						advertisingText +
-						". By continuing to browse the site you are agreeing to our use of cookies.</div>",
-					messagelink:
-						'<div class="cookie-heading"><h2>Cookies</h2></div><div class="cookie-consent" id="cookieconsent:desc">' +
-						advertisingText +
-						'. By continuing to browse the site you are agreeing to our use of cookies. <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="' +
-						options.url +
-						'" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><div class="form-group"><a tabindex="0" class="settings-dismiss">Save settings</a></div></div><div class="settings-form"><h2>Strictly necessary cookies</h2><p>These cookies are essential so that you can move around the website and use its features. Without these cookies services you have asked for cannot be provided.</p>' +
-						cookieText +
-						'<div class="settings-indiv">' +
-						tracking +
-						marketing +
-						"</div></div></form></div>",
-					dismiss:
-						'<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss">Accept</a>' +
-						showSettings,
+					message: `<div class="cookie-heading"><h2>Cookies</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText}</div>`,
+					messagelink: `<div class="cookie-heading"><h2>Cookies</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="${
+						options.url
+					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><div class="form-group"><a tabindex="0" class="settings-dismiss">Save settings</a></div></div><div class="settings-form"><h2>${essentialHeader}</h2><p>${essentialText}</p>${cookieText}<div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
+					dismiss: `<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss">Accept</a>${showSettings}`,
 					allow: "",
 					deny: "",
 					link: "",
