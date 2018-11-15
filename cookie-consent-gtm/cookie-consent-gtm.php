@@ -49,11 +49,13 @@ if (!class_exists('cookie_consent_gtm')) {
         // Set up initial cookies
         public static function init_cookies()
         {
-            if (!isset($_COOKIE['disallow_tracking'])) {
-                setcookie('disallow_tracking', 'true', time() + 31556926);
-            }
-            if (!isset($_COOKIE['disallow_marketing'])) {
-                setcookie('disallow_marketing', 'true', time() + 31556926);
+            if (!is_admin()) {
+                if (!isset($_COOKIE['disallow_tracking'])) {
+                    setcookie('disallow_tracking', 'true', time() + 31556926);
+                }
+                if (!isset($_COOKIE['disallow_marketing'])) {
+                    setcookie('disallow_marketing', 'true', time() + 31556926);
+                }
             }
         }
 

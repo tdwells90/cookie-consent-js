@@ -43,8 +43,6 @@ if (!class_exists('cookie_consent_settings')) {
 
             // Register options page
             add_action('admin_menu', array(__class__, 'register_options_page'));
-
-            add_action('admin_menu', array(__class__, 'check_user_roles'));
         }
 
         // Register settings page
@@ -147,13 +145,6 @@ if (!class_exists('cookie_consent_settings')) {
         </div>
             <?php
 
-        }
-
-        public static function check_user_roles()
-        {
-            if (!current_user_can('manage_options')) {
-                wp_die(__('You do not have sufficient permissions to access this page.'));
-            }
         }
 
     }
