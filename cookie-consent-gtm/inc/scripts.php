@@ -54,23 +54,23 @@ if (!class_exists('cookie_consent_scripts')) {
         public static function cookie_consent_dynamic_script()
         {
             // Tracking / Marketing cookies enable
-            $tracking = get_option('cookie-consent-gtm-tracking');
-            $marketing = get_option('cookie-consent-gtm-marketing');
+            $tracking = strip_tags(get_option('cookie-consent-gtm-tracking'));
+            $marketing = strip_tags(get_option('cookie-consent-gtm-marketing'));
 
             // Custom text
-            $main_text = get_option('cookie-consent-gtm-main-text');
-            $header = get_option('cookie-consent-gtm-header');
-            $essential_header = get_option('cookie-consent-gtm-essential-heading');
-            $essential_text = get_option('cookie-consent-gtm-essential-text');
-            $tracking_text = get_option('cookie-consent-gtm-tracking-text');
-            $marketing_text = get_option('cookie-consent-gtm-marketing-text');
+            $main_text = strip_tags(get_option('cookie-consent-gtm-main-text'));
+            $header = strip_tags(get_option('cookie-consent-gtm-header'));
+            $essential_header = strip_tags(get_option('cookie-consent-gtm-essential-heading'));
+            $essential_text = strip_tags(get_option('cookie-consent-gtm-essential-text'));
+            $tracking_text = strip_tags(get_option('cookie-consent-gtm-tracking-text'));
+            $marketing_text = strip_tags(get_option('cookie-consent-gtm-marketing-text'));
 
             // Button classes
-            $primary = get_option('cookie-consent-gtm-btn-classes-primary');
-            $secondary = get_option('cookie-consent-gtm-btn-classes-secondary');
+            $primary = strip_tags(get_option('cookie-consent-gtm-btn-classes-primary'));
+            $secondary = strip_tags(get_option('cookie-consent-gtm-btn-classes-secondary'));
 
             // Privacy link
-            $privacy = get_option('cookie-consent-gtm-privacy-link');
+            $privacy = strip_tags(get_option('cookie-consent-gtm-privacy-link'));
 
             // Get html to render
             $html = '<script type="text/javascript">';

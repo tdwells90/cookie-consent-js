@@ -26,7 +26,7 @@ if (!class_exists('cookie_consent_gtm_include')) {
         public static function register_gtm()
         {
             // Get GTM code from settings
-            $gtm_code = get_option('cookie-consent-gtm-code');
+            $gtm_code = strip_tags(get_option('cookie-consent-gtm-code'));
             if ($gtm_code) {
                 ?>
             <!-- Google Tag Manager -->

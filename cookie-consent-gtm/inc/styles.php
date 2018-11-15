@@ -38,8 +38,8 @@ if (!class_exists('cookie_consent_styles')) {
         public static function custom_styles()
         {
             // Tracking / Marketing cookies enable
-            $link_color = get_option('cookie-consent-gtm-link-color');
-            $bg_color = get_option('cookie-consent-gtm-bg-color');
+            $link_color = strip_tags(get_option('cookie-consent-gtm-link-color'));
+            $bg_color = strip_tags(get_option('cookie-consent-gtm-bg-color'));
 
             $styles = '<style>';
             $styles .= $link_color ? '.cc-compliance a, .settings-dismiss, .cc-revoke {color:' . $link_color . ';}.cookie-settings input:checked+.slider{background-color:' . $link_color . ';}' : '.cc-compliance a, .settings-dismiss, .cc-revoke{color: #90EE90}.cookie-settings input:checked+.slider{background-color: #90EE90;}';
