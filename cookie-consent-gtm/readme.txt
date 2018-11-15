@@ -26,7 +26,18 @@ This section describes how to install the plugin and get it working.
 3. Go to \"settings > Simple Cookie Consent GTM\" to configure all settings.
 
 == Frequently Asked Questions ==
+
 = How do I configure Google Tag Manager to work with this plugin? =
+
+For full instructions, see our [documentation online]().
+
+= Do I need to load in my Google Tag Manager code? =
+
+No, this plugin will load in your Tag Manager code.
+
+= Does this plugin work with Javascript disabled? =
+
+No, but it won't load in Google Tag Manager at all. This is intentional, as otherwise the user won't be able to turn their cookies on or off. This is the safest solution in order to be GDPR compliant.
 
 == Screenshots ==
 1. Settings Page
