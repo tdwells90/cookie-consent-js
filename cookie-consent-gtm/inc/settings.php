@@ -31,9 +31,11 @@ if (!class_exists('cookie_consent_settings')) {
                 // GTM Code
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-code');
 
-                // Custom Colours
+                // Custom Colours + classes
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-link-color');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-bg-color');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-btn-classes-primary');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-btn-classes-secondary');
 
                 // Privacy Link
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-privacy-link');
@@ -89,6 +91,17 @@ if (!class_exists('cookie_consent_settings')) {
                         <tr>
                             <th scope="row"><label for="cookie-consent-gtm-bg-color">Background Colour</label></th>
                             <td><input type="text" name="cookie-consent-gtm-bg-color" value="<?php echo get_option('cookie-consent-gtm-bg-color'); ?>" class="color-picker-field" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><h4>Button Classes</h4></th>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-btn-classes-primary">Primary buttons</label></th>
+                            <td><input class="regular-text ltr" type="text" name="cookie-consent-gtm-btn-classes-primary" value="<?php echo get_option('cookie-consent-gtm-btn-classes-primary'); ?>" placeholder="Default: btn btn-primary" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-btn-classes-secondary">Secondary buttons</label></th>
+                            <td><input class="regular-text ltr" type="text" name="cookie-consent-gtm-btn-classes-secondary" value="<?php echo get_option('cookie-consent-gtm-btn-classes-secondary'); ?>" placeholder="Default: btn btn-secondary" /></td>
                         </tr>
                     </tbody>
                 </table>
