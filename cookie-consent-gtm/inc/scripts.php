@@ -65,6 +65,10 @@ if (!class_exists('cookie_consent_scripts')) {
             $tracking_text = get_option('cookie-consent-gtm-tracking-text');
             $marketing_text = get_option('cookie-consent-gtm-marketing-text');
 
+            // Button classes
+            $primary = get_option('cookie-consent-gtm-btn-classes-primary');
+            $secondary = get_option('cookie-consent-gtm-btn-classes-secondary');
+
             // Privacy link
             $privacy = get_option('cookie-consent-gtm-privacy-link');
 
@@ -73,6 +77,8 @@ if (!class_exists('cookie_consent_scripts')) {
             $html .= 'if(typeof cookieConsent !== "undefined"){';
             $html .= 'cookieConsent.init({';
             $html .= $privacy ? 'url: "' . $privacy . '",' : 'url: "/privacy/",';
+            $html .= $primary ? 'primary: "' . $primary . '",' : 'primary: false,';
+            $html .= $secondary ? 'secondary: "' . $secondary . '",' : 'secondary: false,';
             $html .= $tracking ? 'tracking: true,' : 'tracking: false,';
             $html .= $marketing ? 'marketing: true,' : 'marketing: false,';
             $html .= $main_text ? 'mainText: "' . $main_text . '",' : 'mainText: false,';

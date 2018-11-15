@@ -124,6 +124,15 @@ var cookieConsent = (function($) {
 			? options.marketingText
 			: "Marketing cookies are used to provide you with personalised marketing after you have visited our website.";
 
+		// Primary button classes
+		var primaryButton = options.primary
+			? options.primary
+			: "btn btn-primary";
+
+		var secondaryButton = options.secondary
+			? options.secondary
+			: "btn btn-secondary";
+
 		// Main Header
 		var header = options.header ? options.header : "Cookies";
 
@@ -151,7 +160,7 @@ var cookieConsent = (function($) {
 		// Whether settings need to be displayed
 		var showSettings =
 			options.tracking || options.marketing
-				? '<a href="#" class="cc-settings">Settings</a>'
+				? `<a href="#" class="${secondaryButton} cc-settings">Settings</a>`
 				: "";
 
 		// Tracking cookie checkbox
@@ -181,8 +190,8 @@ var cookieConsent = (function($) {
 					message: `<div class="cookie-heading"><h2>${header}</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText}</div>`,
 					messagelink: `<div class="cookie-heading"><h2>${header}</h2></div><div class="cookie-consent" id="cookieconsent:desc">${mainText} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="${
 						options.url
-					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><a tabindex="0" class="settings-dismiss">Save settings</a></div><div class="settings-form"><h3>${essentialHeader}</h3><p>${essentialText}</p>${cookieText}<div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
-					dismiss: `<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss">Accept</a>${showSettings}`,
+					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><a tabindex="0" class="${primaryButton} settings-dismiss">Save settings</a></div><div class="settings-form"><h3>${essentialHeader}</h3><p>${essentialText}</p>${cookieText}<div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
+					dismiss: `<a aria-label="dismiss cookie message" tabindex="0" class="${primaryButton} cc-btn cc-dismiss">Accept</a>${showSettings}`,
 					allow: "",
 					deny: "",
 					link: "",

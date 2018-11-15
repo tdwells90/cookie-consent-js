@@ -60,14 +60,7 @@
 		}
 
 		.cc-dismiss {
-			font-size: 1.2rem;
-			text-decoration: underline;
 			cursor: pointer;
-			line-height: 1;
-
-			@media only screen and (max-width: 1024px) {
-				font-size: 1.5rem;
-			}
 		}
 	}
 }
