@@ -12,7 +12,20 @@ Do you use Google Tag Manager? Give your users control over their cookies with t
 == Description ==
 This WordPress plugin is a simple solution for GDPR compliance, working in tandem with Google Tag Manager exceptions.
 
-Built on the javascript cookie consent plugin by [https://cookieconsent.insites.com](insites.com), this plugin allows the user to select the types of cookies they want enabled. Using GTM, the site administrator can enable exceptions to prevent stuff like Facebook Pixel, Google Analytics etc from firing if the user doesn\'t want them to.
+**Unlike other plugins which still use 'implied opt-in', this plugin is 100% GDPR compliant and allows the user to select the types of cookies they want enabled on your website.**
+
+Built on the javascript cookie consent plugin by [https://cookieconsent.insites.com](insites.com), this plugin utilises GTM so the site administrator can enable exceptions to prevent stuff like Facebook Pixel, Google Analytics etc from firing if the user doesn't want them to.
+
+= Features =
+
+* Once configured with Google Tag Manager, this plugin is 100% GDPR compliant.
+* Give your users proper access to choose their cookies as required by GDPR.
+* Customisable messages.
+* Link to privacy policy page.
+* Inherits theme styles where possible.
+* Customisable colours and button classes to match your theme.
+* SEO-friendly.
+* Graceful animations to suit any website.
 
 This plugin does not help create a privacy policy. This plugin is just for handling cookies and exceptions specifically within GTM.
 
