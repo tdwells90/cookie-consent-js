@@ -1,4 +1,4 @@
-=== Simple Cookie Consent GTM ===
+=== GTM Cookie Consent ===
 Contributors: nftycreative
 Tags: gtm, cookies, gdpr, cookie-consent, cookie-law,
 Donate link: https://nfty.co.uk

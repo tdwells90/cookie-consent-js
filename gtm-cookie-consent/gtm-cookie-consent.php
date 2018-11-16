@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Simple Cookie Consent GTM
+Plugin Name: GTM Cookie Consent
 Plugin URI:  https://github.com/tdwells90/cookie-consent-js
 Description: Simple cookie consent for Google Tag Manager, built on Cookie Consent JS by insights.com.
 Version:     0.1.0

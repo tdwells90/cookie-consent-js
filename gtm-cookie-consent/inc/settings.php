@@ -48,7 +48,7 @@ if (!class_exists('cookie_consent_settings')) {
         // Register settings page
         public static function register_options_page()
         {
-            add_options_page('Simple Cookie Consent GTM', 'Simple Cookie Consent GTM', 'manage_options', 'cookie-consent-gtm', array(__class__, 'cookie_consent_gtm_options_page'));
+            add_options_page('GTM Cookie Consent', 'GTM Cookie Consent', 'manage_options', 'cookie-consent-gtm', array(__class__, 'cookie_consent_gtm_options_page'));
         }
 
         // Set page HTML and form
@@ -56,7 +56,7 @@ if (!class_exists('cookie_consent_settings')) {
         { ?>
 
         <div class="wrap">
-            <h1>Simple Cookie Consent GTM Settings</h1>
+            <h1>GTM Cookie Consent Settings</h1>
             <p>Use this page to determine what options are shown to the user. Unchecking all will leave you with a simple 'Accept' or 'Deny' option.</p>
             <p>See our docs for <a href="#">setting up Google Tag Manager</a> to work with this plugin.</p>
 
