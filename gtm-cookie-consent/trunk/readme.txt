@@ -5,7 +5,7 @@ Donate link: https://nfty.co.uk
 Requires at least: 3.5
 Tested up to: 4.9.8
 Requires PHP: 5.6
-Stable tag: 0.1.0
+Stable tag: 0.1.1
 
 Do you use Google Tag Manager? Give your users control over their cookies with this simple plugin.
 
@@ -61,6 +61,10 @@ No, but it won't load in Google Tag Manager at all. This is intentional, as othe
 Public release.
 
 == Upgrade Notice ==
+= 0.1.1 =
+
+Fixed some minor styling issues. Better spacing on settings form.
+
 = 0.1.0 =
 
-N/A
+Initial release.
