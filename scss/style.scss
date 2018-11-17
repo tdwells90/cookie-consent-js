@@ -3,6 +3,11 @@
 	.cc-compliance {
 		min-width: 160px;
 
+		.btn-secondary {
+			background-color: #999999;
+			color: #fff;
+		}
+
 		@media only screen and (max-width: 1024px) {
 			min-width: none;
 			width: 100%;
@@ -29,6 +34,10 @@
 		padding: 0 2rem;
 		line-height: 1.4;
 		flex-grow: 1;
+
+		h2 {
+			margin-top: 0;
+		}
 
 		@media only screen and (max-width: 1024px) {
 			min-width: none;
@@ -151,7 +160,7 @@
 	}
 
 	.settings-form {
-		padding-left: 2rem;
+		padding-left: 48px;
 		float: left;
 		width: calc(100% / 12 * 9);
 
