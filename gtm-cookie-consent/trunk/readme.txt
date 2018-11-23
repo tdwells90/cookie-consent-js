@@ -56,6 +56,12 @@ No, but it won't load in Google Tag Manager at all. This is intentional, as othe
 1. Settings Page
 
 == Changelog ==
+= 1.0.1 =
+
+- Removed problematic switch input.
+- Fixed adding of both tracking and marketing cookies if not chosen in settings.
+- Reloads page on acceptance of cookies / settings.
+
 = 1.0.0 =
 
 Fixed some minor styling issues. Better spacing on settings form.
