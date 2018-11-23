@@ -2,3 +2,5 @@ node_modules/
 .DS_Store
 *.lock
 *.zip
+gtm-cookie-consent/branches
+gtm-cookie-consent/tags

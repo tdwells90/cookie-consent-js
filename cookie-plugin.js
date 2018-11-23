@@ -104,27 +104,30 @@ var cookieConsent = (function($) {
 		// Tracking cookie value
 		var trackingCookie;
 		if (options.tracking && getStorage("consent")) {
-			trackingCookie = document.cookie.replace(
-				/(?:(?:^|.*;\s*)disallow_tracking\s*\=\s*([^;]*).*$)|^.*$/,
-				"$1"
-			);
+			// trackingCookie = document.cookie.replace(
+			// 	/(?:(?:^|.*;\s*)disallow_tracking\s*\=\s*([^;]*).*$)|^.*$/,
+			// 	"$1"
+			// );
+			trackingCookie = getCookie("disallow_tracking");
 		} else if (options.tracking && !getStorage("consent")) {
-			trackingCookie = true;
-		} else {
 			trackingCookie = false;
+		} else {
+			trackingCookie = true;
 		}
+		console.log(trackingCookie);
 
 		// marketing cookie value
 		var marketingCookie;
 		if (options.marketing && getStorage("consent")) {
-			marketingCookie = document.cookie.replace(
-				/(?:(?:^|.*;\s*)disallow_marketing\s*\=\s*([^;]*).*$)|^.*$/,
-				"$1"
-			);
+			// marketingCookie = document.cookie.replace(
+			// 	/(?:(?:^|.*;\s*)disallow_marketing\s*\=\s*([^;]*).*$)|^.*$/,
+			// 	"$1"
+			// );
+			trackingCookie = getCookie("disallow_marketing");
 		} else if (options.marketing && !getStorage("consent")) {
-			marketingCookie = true;
-		} else {
 			marketingCookie = false;
+		} else {
+			marketingCookie = true;
 		}
 
 		// Options from init
@@ -166,10 +169,21 @@ var cookieConsent = (function($) {
 			: "We use cookies to ensure you have the best browsing experience, to help us improve our website and for targeted advertising.. By continuing to browse the site you are agreeing to our use of cookies.";
 
 		// Third party cookies checkbox
-		var cookieText =
-			trackingCookie === "true" || marketingCookie === "true"
+		var cookieText;
+		if (options.tracking && options.marketing) {
+			cookieText =
+				trackingCookie && marketingCookie
+					? '<h3><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h3>'
+					: '<h3><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h3>';
+		} else if (options.tracking && !options.marketing) {
+			cookieText = trackingCookie
 				? '<h3><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h3>'
 				: '<h3><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h3>';
+		} else {
+			cookieText = marketingCookie
+				? '<h3><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h3>'
+				: '<h3><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h3>';
+		}
 
 		// Whether settings need to be displayed
 		var showSettings =
@@ -353,6 +367,29 @@ var cookieConsent = (function($) {
 			});
 		});
 	};
+
+	/**
+	 *
+	 *
+	 * Get value of cookie
+	 *
+	 *
+	 */
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(";");
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == " ") {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
 
 	/*
 	 * SET LOCALSTORAGE FUNCTION
