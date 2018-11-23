@@ -1,24 +1,6 @@
 var cookieConsent = (function($) {
 	"use strict";
 
-	/**
-	 *
-	 *
-	 * Checkbox functions
-	 *
-	 *
-	 */
-	// Main checkbox function
-	var setCheckbox = function setCheckbox(state) {
-		if (state === "unchecked") {
-			$(".switch input").prop("checked", false);
-		}
-
-		if (state === "checked") {
-			$(".switch input").prop("checked", true);
-		}
-	};
-
 	// Marketing checkbox function
 	var setMarketingCheckbox = function setMarketingCheckbox(state) {
 		if (state === "unchecked") {
@@ -111,7 +93,6 @@ var cookieConsent = (function($) {
 		} else {
 			trackingCookie = true;
 		}
-		console.log(trackingCookie);
 
 		// marketing cookie value
 		var marketingCookie;
@@ -162,23 +143,6 @@ var cookieConsent = (function($) {
 			? options.mainText
 			: "We use cookies to ensure you have the best browsing experience, to help us improve our website and for targeted advertising.. By continuing to browse the site you are agreeing to our use of cookies.";
 
-		// Third party cookies checkbox
-		var cookieText;
-		if (options.tracking && options.marketing) {
-			cookieText =
-				trackingCookie && marketingCookie
-					? '<h3><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h3>'
-					: '<h3><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h3>';
-		} else if (options.tracking && !options.marketing) {
-			cookieText = trackingCookie
-				? '<h3><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h3>'
-				: '<h3><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h3>';
-		} else {
-			cookieText = marketingCookie
-				? '<h3><label class="switch"><input type="checkbox"><span class="slider round"></span></label> Third-party cookies</h3>'
-				: '<h3><label class="switch"><input type="checkbox" checked><span class="slider round"></span></label> Third-party cookies</h3>';
-		}
-
 		// Whether settings need to be displayed
 		var showSettings =
 			options.tracking || options.marketing
@@ -212,7 +176,7 @@ var cookieConsent = (function($) {
 					message: `<div class="cookie-consent" id="cookieconsent:desc"><h2>${header}</h2>${mainText}</div>`,
 					messagelink: `<div class="cookie-consent" id="cookieconsent:desc"><h2>${header}</h2>${mainText} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="${
 						options.url
-					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><a tabindex="0" class="${primaryButton} settings-dismiss">Save settings</a></div><div class="settings-form"><h3>${essentialHeader}</h3><p>${essentialText}</p>${cookieText}<div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
+					}" target="_blank">Find out more</a></div><div class="cookie-settings"><form><div class="settings-heading"><h2>Cookie Settings</h2><a tabindex="0" class="${primaryButton} settings-dismiss">Save settings</a></div><div class="settings-form"><h3>${essentialHeader}</h3><p>${essentialText}</p><h3>Third-party cookies</h3><div class="settings-indiv">${tracking}${marketing}</div></div></form></div>`,
 					dismiss: `<a aria-label="dismiss cookie message" tabindex="0" class="${primaryButton} cc-btn cc-dismiss">Accept</a>${showSettings}`,
 					allow: "",
 					deny: "",
@@ -248,8 +212,6 @@ var cookieConsent = (function($) {
 		});
 
 		$(document).ready(function() {
-			// By default, uncheck the tracking checkbox
-			$(".switch input").prop("checked", true);
 			// Settings link click
 			$(document).on("click", ".cc-settings", function(event) {
 				// Prevent default action (link click)
@@ -284,8 +246,6 @@ var cookieConsent = (function($) {
 			$(document).on("click", ".switch input", function(event) {
 				// If is not checked, disallow and uncheck Marketing + tracking checkboxes
 				if (!$(".switch input").is(":checked")) {
-					setCheckbox("unchecked");
-
 					// Marketing
 					if (options.marketing) {
 						setMarketingCheckbox("unchecked");
@@ -298,8 +258,6 @@ var cookieConsent = (function($) {
 
 					// Otherwise, do the opposite
 				} else {
-					setCheckbox("checked");
-
 					// Marketing
 					if (options.marketing) {
 						setMarketingCheckbox("checked");
@@ -309,20 +267,6 @@ var cookieConsent = (function($) {
 					if (options.tracking) {
 						setTrackingCheckbox("checked");
 					}
-				}
-			});
-
-			// Check if all inputs are checked.
-			$(document).on("change", ".checkbox input", function() {
-				// If checked inputs matches total number of inputs, check the toggle.
-				// Otherwise, uncheck
-				if (
-					$(".checkbox input:checked").length ===
-					$(".checkbox input").length
-				) {
-					setCheckbox("checked");
-				} else {
-					setCheckbox("unchecked");
 				}
 			});
 

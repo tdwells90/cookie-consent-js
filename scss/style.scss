@@ -210,7 +210,7 @@
 			transition: 0.4s;
 		}
 	}
-	input:checked + .slider {
+	.slider.switch-active {
 		&::before {
 			transform: translateX(30px);
 		}
