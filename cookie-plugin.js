@@ -102,16 +102,30 @@ var cookieConsent = (function($) {
 	// Setup Cookies
 	var setupCookies = function setupCookies(options) {
 		// Tracking cookie value
-		var trackingCookie = document.cookie.replace(
-			/(?:(?:^|.*;\s*)disallow_tracking\s*\=\s*([^;]*).*$)|^.*$/,
-			"$1"
-		);
+		var trackingCookie;
+		if (options.tracking && getStorage("consent")) {
+			trackingCookie = document.cookie.replace(
+				/(?:(?:^|.*;\s*)disallow_tracking\s*\=\s*([^;]*).*$)|^.*$/,
+				"$1"
+			);
+		} else if (options.tracking && !getStorage("consent")) {
+			trackingCookie = true;
+		} else {
+			trackingCookie = false;
+		}
 
 		// marketing cookie value
-		var marketingCookie = document.cookie.replace(
-			/(?:(?:^|.*;\s*)disallow_marketing\s*\=\s*([^;]*).*$)|^.*$/,
-			"$1"
-		);
+		var marketingCookie;
+		if (options.marketing && getStorage("consent")) {
+			marketingCookie = document.cookie.replace(
+				/(?:(?:^|.*;\s*)disallow_marketing\s*\=\s*([^;]*).*$)|^.*$/,
+				"$1"
+			);
+		} else if (options.marketing && !getStorage("consent")) {
+			marketingCookie = true;
+		} else {
+			marketingCookie = false;
+		}
 
 		// Options from init
 		// Tracking text
@@ -210,9 +224,6 @@ var cookieConsent = (function($) {
 				if (!getStorage("consent")) {
 					// open the cookie consent popup
 					p.open();
-
-					// Set localStorage
-					setStorage("consent", "shown");
 				}
 			},
 			function(err) {
@@ -247,6 +258,7 @@ var cookieConsent = (function($) {
 					.fadeIn(400);
 			});
 
+			// Dismiss the settings form
 			$(document).on("click", ".settings-dismiss", function(event) {
 				// Prevent default action (link click)
 				event.preventDefault();
@@ -258,6 +270,38 @@ var cookieConsent = (function($) {
 				$(".cookie-heading, .cookie-consent, .cc-compliance")
 					.delay(400)
 					.fadeIn(400);
+			});
+
+			// Checkbox click
+			$(document).on("click", ".switch input", function(event) {
+				// If is not checked, disallow and uncheck Marketing + tracking checkboxes
+				if (!$(".switch input").is(":checked")) {
+					setCheckbox("unchecked");
+
+					// Marketing
+					if (options.marketing) {
+						setMarketingCheckbox("unchecked");
+					}
+
+					// Tracking
+					if (options.tracking) {
+						setTrackingCheckbox("unchecked");
+					}
+
+					// Otherwise, do the opposite
+				} else {
+					setCheckbox("checked");
+
+					// Marketing
+					if (options.marketing) {
+						setMarketingCheckbox("checked");
+					}
+
+					// Tracking
+					if (options.tracking) {
+						setTrackingCheckbox("checked");
+					}
+				}
 			});
 
 			// Check if all inputs are checked.
@@ -274,54 +318,38 @@ var cookieConsent = (function($) {
 				}
 			});
 
-			// On Marketing checkbox change
-			$(document).on("change", ".marketing-checkbox", function() {
-				if ($(".marketing-checkbox").is(":checked")) {
-					// Set cookie to allow
-					setMarketingCookie("allow");
-				} else {
-					// Set cookie to disallow
-					setMarketingCookie("disallow");
+			// When closing the popup, set cookies
+			// And refresh the page
+			$(document).on("click", ".cc-dismiss", function() {
+				// Check tracking checkbox
+				if (options.tracking) {
+					if ($(".tracking-checkbox").is(":checked")) {
+						// Set cookie to allow
+						setTrackingCookie("allow");
+					} else {
+						// Set cookie to disallow
+						setTrackingCookie("disallow");
+					}
 				}
-			});
 
-			// On tracking checkbox change
-			$(document).on("change", ".tracking-checkbox", function() {
-				if ($(".tracking-checkbox").is(":checked")) {
-					// Set cookie to allow
-					setTrackingCookie("allow");
-				} else {
-					// Set cookie to disallow
-					setTrackingCookie("disallow");
+				// Marketing checkbox
+				if (options.marketing) {
+					if ($(".marketing-checkbox").is(":checked")) {
+						// Set cookie to allow
+						setMarketingCookie("allow");
+					} else {
+						// Set cookie to disallow
+						setMarketingCookie("disallow");
+					}
 				}
-			});
 
-			// Checkbox click
-			$(document).on("click", ".switch input", function(event) {
-				// If is not checked, disallow and uncheck Marketing + tracking checkboxes
-				if (!$(".switch input").is(":checked")) {
-					setCheckbox("unchecked");
-
-					// Marketing
-					setMarketingCookie("disallow");
-					setMarketingCheckbox("unchecked");
-
-					// Tracking
-					setTrackingCookie("disallow");
-					setTrackingCheckbox("unchecked");
-
-					// Otherwise, do the opposite
-				} else {
-					setCheckbox("checked");
-
-					// Marketing
-					setMarketingCookie("allow");
-					setMarketingCheckbox("checked");
-
-					// Tracking
-					setTrackingCookie("allow");
-					setTrackingCheckbox("checked");
+				// If no localStorage is detected, open popup
+				if (!getStorage("consent")) {
+					// Set localStorage
+					setStorage("consent", "shown");
 				}
+
+				location.reload();
 			});
 		});
 	};

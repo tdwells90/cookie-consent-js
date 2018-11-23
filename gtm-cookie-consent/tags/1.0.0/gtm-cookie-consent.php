@@ -50,15 +50,11 @@ if (!class_exists('cookie_consent_gtm')) {
         public static function init_cookies()
         {
             if (!is_admin()) {
-                if (get_option('cookie-consent-gtm-tracking')) {
-                    if (!isset($_COOKIE['disallow_tracking'])) {
-                        setcookie('disallow_tracking', 'true', time() + 31556926);
-                    }
+                if (!isset($_COOKIE['disallow_tracking'])) {
+                    setcookie('disallow_tracking', 'true', time() + 31556926);
                 }
-                if (get_option('cookie-consent-gtm-marketing')) {
-                    if (!isset($_COOKIE['disallow_marketing'])) {
-                        setcookie('disallow_marketing', 'true', time() + 31556926);
-                    }
+                if (!isset($_COOKIE['disallow_marketing'])) {
+                    setcookie('disallow_marketing', 'true', time() + 31556926);
                 }
             }
         }
