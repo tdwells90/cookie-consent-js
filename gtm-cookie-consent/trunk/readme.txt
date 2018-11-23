@@ -5,7 +5,7 @@ Donate link: https://nfty.co.uk
 Requires at least: 3.5
 Tested up to: 4.9.8
 Requires PHP: 5.6
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 Do you use Google Tag Manager? Give your users control over their cookies with this simple plugin.
 
