@@ -104,10 +104,7 @@ var cookieConsent = (function($) {
 		// Tracking cookie value
 		var trackingCookie;
 		if (options.tracking && getStorage("consent")) {
-			// trackingCookie = document.cookie.replace(
-			// 	/(?:(?:^|.*;\s*)disallow_tracking\s*\=\s*([^;]*).*$)|^.*$/,
-			// 	"$1"
-			// );
+			// Get value of cookie from function
 			trackingCookie = getCookie("disallow_tracking");
 		} else if (options.tracking && !getStorage("consent")) {
 			trackingCookie = false;
@@ -119,10 +116,7 @@ var cookieConsent = (function($) {
 		// marketing cookie value
 		var marketingCookie;
 		if (options.marketing && getStorage("consent")) {
-			// marketingCookie = document.cookie.replace(
-			// 	/(?:(?:^|.*;\s*)disallow_marketing\s*\=\s*([^;]*).*$)|^.*$/,
-			// 	"$1"
-			// );
+			// Get value of cookie from function
 			trackingCookie = getCookie("disallow_marketing");
 		} else if (options.marketing && !getStorage("consent")) {
 			marketingCookie = false;
