@@ -40,10 +40,12 @@ if (!class_exists('cookie_consent_styles')) {
             // Tracking / Marketing cookies enable
             $link_color = strip_tags(get_option('cookie-consent-gtm-link-color'));
             $bg_color = strip_tags(get_option('cookie-consent-gtm-bg-color'));
+            $custom_styles = strip_tags(get_option('cookie-consent-gtm-custom-css'));
 
             $styles = '<style>';
             $styles .= $link_color ? '.cc-compliance a, .settings-dismiss, .cc-revoke {color:' . $link_color . ';}.cookie-settings .slider.switch-active{background-color:' . $link_color . ';}' : '.cc-compliance a, .settings-dismiss, .cc-revoke{color: #90EE90}.cookie-settings .slider.switch-active{background-color: #90EE90;}';
             $styles .= $bg_color ? '.cc-window, .cc-revoke {background-color : ' . $bg_color . ';}' : '.cc-window, .cc-revoke {background-color :#fff;}';
+            $styles .= $custom_styles;
             $styles .= '</style>';
 
             echo $styles;

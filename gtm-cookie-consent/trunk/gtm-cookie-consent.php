@@ -3,7 +3,7 @@
 Plugin Name: GTM Cookie Consent
 Plugin URI:  https://github.com/tdwells90/cookie-consent-js
 Description: Simple GDPR-compliant cookie consent for Google Tag Manager, built on Cookie Consent JS by insights.com.
-Version:     1.0.1
+Version:     1.0.2
 Author:      Nfty Creative
 Author URI:  http://nfty.co.uk
 License:     GPL2

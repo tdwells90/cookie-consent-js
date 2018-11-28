@@ -36,6 +36,7 @@ if (!class_exists('cookie_consent_settings')) {
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-bg-color');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-btn-classes-primary');
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-btn-classes-secondary');
+                register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-custom-css');
 
                 // Privacy Link
                 register_setting('cookie-consent-gtm-settings', 'cookie-consent-gtm-privacy-link');
@@ -91,15 +92,16 @@ if (!class_exists('cookie_consent_settings')) {
                             <td><input type="text" name="cookie-consent-gtm-bg-color" value="<?php echo get_option('cookie-consent-gtm-bg-color'); ?>" class="color-picker-field" /></td>
                         </tr>
                         <tr>
-                            <th scope="row"><h4>Button Classes</h4></th>
-                        </tr>
-                        <tr>
-                            <th scope="row"><label for="cookie-consent-gtm-btn-classes-primary">Primary buttons</label></th>
+                            <th scope="row"><label for="cookie-consent-gtm-btn-classes-primary">Primary button classes</label></th>
                             <td><input class="regular-text ltr" type="text" name="cookie-consent-gtm-btn-classes-primary" value="<?php echo get_option('cookie-consent-gtm-btn-classes-primary'); ?>" placeholder="Default: btn btn-primary" /></td>
                         </tr>
                         <tr>
-                            <th scope="row"><label for="cookie-consent-gtm-btn-classes-secondary">Secondary buttons</label></th>
+                            <th scope="row"><label for="cookie-consent-gtm-btn-classes-secondary">Secondary button classes</label></th>
                             <td><input class="regular-text ltr" type="text" name="cookie-consent-gtm-btn-classes-secondary" value="<?php echo get_option('cookie-consent-gtm-btn-classes-secondary'); ?>" placeholder="Default: btn btn-secondary" /></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><label for="cookie-consent-gtm-custom-css">Custom CSS</label></th>
+                            <td><textarea class="regular-text ltr" style="min-height: 160px;" name="cookie-consent-gtm-custom-css"><?php echo get_option('cookie-consent-gtm-custom-css'); ?></textarea></td>
                         </tr>
                     </tbody>
                 </table>
